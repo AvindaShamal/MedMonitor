@@ -1,0 +1,260 @@
+[
+    {
+        "id": "30fbe655841d8eda",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "377fe3d6d246b73e",
+        "type": "mqtt in",
+        "z": "30fbe655841d8eda",
+        "name": "Heart Rate Input",
+        "topic": "heart_rate_anju",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 430,
+        "y": 160,
+        "wires": [
+            [
+                "e77ad17c8ee8b34e"
+            ]
+        ]
+    },
+    {
+        "id": "aa088822f46a3008",
+        "type": "mqtt in",
+        "z": "30fbe655841d8eda",
+        "name": "SpO2 Input",
+        "topic": "spo2_anju",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 430,
+        "y": 220,
+        "wires": [
+            [
+                "94e0a5beb9ae69f3"
+            ]
+        ]
+    },
+    {
+        "id": "4d151f1792f65cd1",
+        "type": "mqtt in",
+        "z": "30fbe655841d8eda",
+        "name": "Temperature Input",
+        "topic": "temperature_anju",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "mqtt_broker",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "63ba964d8def0262"
+            ]
+        ]
+    },
+    {
+        "id": "e77ad17c8ee8b34e",
+        "type": "function",
+        "z": "30fbe655841d8eda",
+        "name": "Parse HR",
+        "func": "msg.payload = { topic: 'heart_rate_anju', value: parseInt(msg.payload) };\nreturn msg.payload;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 160,
+        "wires": [
+            [
+                "6670de97a1abacc7"
+            ]
+        ]
+    },
+    {
+        "id": "94e0a5beb9ae69f3",
+        "type": "function",
+        "z": "30fbe655841d8eda",
+        "name": "Pass SPO2",
+        "func": "msg.payload = { topic: 'spo2_anju', value: parseInt(msg.payload) };\nreturn msg.payload;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 220,
+        "wires": [
+            [
+                "9cb373c503c826a3"
+            ]
+        ]
+    },
+    {
+        "id": "63ba964d8def0262",
+        "type": "function",
+        "z": "30fbe655841d8eda",
+        "name": "Pass Temperature",
+        "func": "msg.payload = { topic: 'temperature_anju', value: parseFloat(msg.payload) };\nreturn msg.payload;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 280,
+        "wires": [
+            [
+                "e8784b6cabdb2b4e"
+            ]
+        ]
+    },
+    {
+        "id": "9cb373c503c826a3",
+        "type": "ui_gauge",
+        "z": "30fbe655841d8eda",
+        "name": "SPO2 Level",
+        "group": "dashboard_group",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 870,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e8784b6cabdb2b4e",
+        "type": "ui_gauge",
+        "z": "30fbe655841d8eda",
+        "name": "Temperature",
+        "group": "dashboard_group",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{msg.payload}}",
+        "min": "20",
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 870,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "6670de97a1abacc7",
+        "type": "ui_gauge",
+        "z": "30fbe655841d8eda",
+        "name": "Heart Rate",
+        "group": "dashboard_group",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{msg.payload}}",
+        "min": "50",
+        "max": "150",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 870,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "mqtt_broker",
+        "type": "mqtt-broker",
+        "name": "mosquittoNodered",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "NodeREDClient",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dashboard_group",
+        "type": "ui_group",
+        "name": "Health Metrics",
+        "tab": "dashboard_tab",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "dashboard_tab",
+        "type": "ui_tab",
+        "name": "Health Monitor",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]
