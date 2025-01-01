@@ -1,6 +1,8 @@
 # MedMonitor
 This is an IoT-based health monitoring system developed as a course project for EN3251: Internet of Things at the University of Moratuwa. MedMonitor allows for real-time tracking of vital health parameters, aiming to improve healthcare accessibility and reduce strain on medical facilities.
 
+![Project](https://github.com/AvindaShamal/MedMonitor/blob/main/Images/1.1.jpg)
+
 ## Project Overview
 The MedMonitor system continuously monitors essential health metrics such as blood oxygen levels (SpO2), heart rate, and body temperature. This data is transmitted to a cloud-based platform, where healthcare professionals and caregivers can monitor patient conditions remotely. Alerts are generated if any readings exceed defined threshold values, enabling timely intervention.
 
